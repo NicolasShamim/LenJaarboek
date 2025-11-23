@@ -3,63 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Len's Pagina</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>✨ Len's Gallerij ✨</h1>
-            <p>Swipe of klik om door te bladeren</p>
-        </div>
-
-        <div class="slider-container">
-            <div class="slide-counter">
-                <span id="current">1</span> / 5
-            </div>
-            
-            <div class="slide active">
-                <img src="afbeeldingen/IMG_7718.JPEG" alt="Foto 1">
-            </div>
-            <div class="slide">
-                <img src="afbeeldingen/IMG_7719.JPEG" alt="Foto 2">
-            </div>
-            <div class="slide">
-                <img src="afbeeldingen/IMG_7720.JPEG" alt="Foto 3">
-            </div>
-            <div class="slide">
-                <img src="afbeeldingen/E7AF4517-1BA3-48.jpg" alt="Foto 4">
-            </div>
-            <div class="slide">
-                <video controls playsinline>
-                    <source src="afbeeldingen/video.mp4" type="video/mp4">
-                    <source src="afbeeldingen/video.webm" type="video/webm">
-                    <source src="afbeeldingen/video.mov" type="video/quicktime">
-                </video>
-            </div>
-
-            <div class="controls">
-                <button class="arrow prev-btn" id="prev">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
-                <div class="dots">
-                    <span class="dot active" data-slide="0"></span>
-                    <span class="dot" data-slide="1"></span>
-                    <span class="dot" data-slide="2"></span>
-                    <span class="dot" data-slide="3"></span>
-                    <span class="dot" data-slide="4"></span>
-                </div>
-                <button class="arrow next-btn" id="next">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
+    <title>13 Jaar Len</title>
     <style>
         * {
             margin: 0;
@@ -68,62 +12,158 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6C1D5F 0%, #4a1442 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(126, 34, 206, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -200px;
-            right: -200px;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(42, 82, 152, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -150px;
-            left: -150px;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 900px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            position: relative;
-            z-index: 1;
-            animation: slideUp 0.6s ease-out;
+            max-width: 100%;
+            padding: 40px 20px;
         }
 
-        @keyframes slideUp {
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .gallery-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .gallery {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .photo-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateX(100%) scale(0.9);
+            transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        .photo-card.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            z-index: 2;
+        }
+
+        .photo-card.prev {
+            opacity: 0;
+            transform: translateX(-100%) scale(0.9);
+            z-index: 1;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 20px;
+            opacity: 0.8;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .footer p {
+            font-size: 0.9em;
+            font-weight: 300;
+        }
+
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
@@ -131,262 +171,153 @@
             }
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: rotate 15s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .header p {
-            position: relative;
-            z-index: 1;
-            opacity: 0.95;
-            font-size: 1.1em;
-        }
-
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 500px;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .slide.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .slide img, .slide video {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .slide.active img, .slide.active video {
-            animation: zoomIn 0.6s ease-out;
-        }
-
-        @keyframes zoomIn {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
             }
-        }
-
-        .slide img:hover {
-            transform: scale(1.02);
-        }
-
-        .controls {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            z-index: 10;
-        }
-
-        .arrow {
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            color: #667eea;
-        }
-
-        .arrow:hover {
-            background: white;
-            transform: scale(1.15);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
-        }
-
-        .arrow:active {
-            transform: scale(1.05);
-        }
-
-        .dots {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #cbd5e1;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot:hover {
-            background: #94a3b8;
-            transform: scale(1.2);
-        }
-
-        .dot.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            width: 28px;
-            border-radius: 10px;
-            transform: scale(1);
-        }
-
-        .slide-counter {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-size: 15px;
-            font-weight: 600;
-            z-index: 10;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
-            .slider-container {
-                height: 450px;
-            }
-            
-            h1 {
+            .header h1 {
                 font-size: 2em;
             }
-            
-            .arrow {
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .gallery {
+                height: 400px;
+            }
+
+            .nav-btn {
                 width: 45px;
                 height: 45px;
+                font-size: 1.2em;
             }
         }
     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Len Simons</h1>
+            <p>Een reis door het middelbaar..</p>
+        </div>
+
+        <div class="gallery-wrapper">
+            <div class="gallery">
+                <!-- Vervang de src="..." met jouw eigen foto paden -->
+                <div class="photo-card active">
+                    <img src="afbeeldingen/foto1.jpg" alt="Foto 1">
+                </div>
+                <div class="photo-card">
+                    <img src="afbeeldingen/foto2.jpg" alt="Foto 2">
+                </div>
+                <div class="photo-card">
+                    <img src="afbeeldingen/foto3.jpg" alt="Foto 3">
+                </div>
+                <div class="photo-card">
+                    <img src="afbeeldingen/video1.mp4" alt="Foto 4">
+                </div>
+                <div class="photo-card">
+                    <img src="foto5.jpg" alt="Foto 5">
+                </div>
+                <div class="photo-card">
+                    <img src="foto6.jpg" alt="Foto 6">
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn">‹</button>
+                <button class="nav-btn" id="nextBtn">›</button>
+            </div>
+
+            <div class="dots" id="dotsContainer"></div>
+        </div>
+
+        <div class="footer">
+            <p>13 jaar lang had ik Len aan mijn zijde, hiervoor wil ik hem bedanken. 💜</p>
+        </div>
+    </div>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+        const cards = document.querySelectorAll('.photo-card');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dotsContainer');
+        let currentIndex = 0;
+
+        // Maak dots aan
+        cards.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
         const dots = document.querySelectorAll('.dot');
-        const counter = document.getElementById('current');
-        const totalSlides = slides.length;
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            
-            currentSlide = (n + totalSlides) % totalSlides;
-            
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-            counter.textContent = currentSlide + 1;
+        function updateSlides() {
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'prev');
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else if (index < currentIndex) {
+                    card.classList.add('prev');
+                }
+            });
 
-            const videos = document.querySelectorAll('video');
-            videos.forEach(video => {
-                video.pause();
-                video.currentTime = 0;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
             });
         }
 
-        document.getElementById('next').addEventListener('click', () => {
-            showSlide(currentSlide + 1);
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            updateSlides();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlides();
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // Keyboard navigatie
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
         });
 
-        document.getElementById('prev').addEventListener('click', () => {
-            showSlide(currentSlide - 1);
-        });
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
-        });
-
+        // Touch swipe support
         let touchStartX = 0;
         let touchEndX = 0;
 
-        const sliderContainer = document.querySelector('.slider-container');
-        
-        sliderContainer.addEventListener('touchstart', e => {
+        document.querySelector('.gallery').addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        sliderContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    showSlide(currentSlide + 1);
-                } else {
-                    showSlide(currentSlide - 1);
-                }
-            }
-        }, { passive: true });
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
-            if (e.key === 'ArrowRight') showSlide(currentSlide + 1);
         });
+
+        document.querySelector('.gallery').addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
+        }
     </script>
 </body>
 </html>
